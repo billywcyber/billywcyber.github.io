@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="KC7 Security Analyst I — Part 1 investigation case study by Billy Wong." />
+  <title>KC7 Security Analyst I | Billy Wong</title>
+  <link rel="stylesheet" href="../assets/style.css" />
+</head>
+<body>
+  <div class="grid-bg"></div>
+  <header class="nav-wrap">
+    <nav class="nav container">
+      <a class="brand" href="../index.html"><span class="brand-mark">BW</span><span>Billy Wong</span></a>
+      <div class="nav-links">
+        <a href="../index.html#projects">← Projects</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="case-main">
+    <section class="case-hero container">
+      <div class="eyebrow"><span class="status-dot"></span> Investigation Case Study</div>
+      <h1>KC7 Security Analyst I<br><span>Part 1 Tutorial</span></h1>
+      <p>
+        A documented SOC investigation focused on methodology, query construction,
+        evidence correlation and lessons learned.
+      </p>
+      <div class="case-facts">
+        <div><span>Platform</span><strong>KC7</strong></div>
+        <div><span>Focus</span><strong>Security Investigation</strong></div>
+        <div><span>Query Language</span><strong>KQL</strong></div>
+        <div><span>Status</span><strong>Completed</strong></div>
+      </div>
+    </section>
+
+    <section class="case-layout container">
+      <aside class="case-sidebar">
+        <div class="toc">
+          <strong>Case file</strong>
+          <a href="#overview">01 Overview</a>
+          <a href="#objective">02 Objective</a>
+          <a href="#skills">03 Skills</a>
+          <a href="#method">04 Method</a>
+          <a href="#query">05 Query Example</a>
+          <a href="#findings">06 Findings</a>
+          <a href="#lessons">07 Lessons Learned</a>
+          <a href="#evidence">08 Evidence</a>
+        </div>
+      </aside>
+
+      <article class="case-content">
+        <section id="overview" class="case-section">
+          <div class="case-label">01 / OVERVIEW</div>
+          <h2>Why I completed this lab</h2>
+          <p>
+            I completed KC7 Security Analyst I — Part 1 to practise the workflow used by a
+            security analyst: form a question, identify the relevant telemetry, query the data,
+            validate the result and pivot into related evidence.
+          </p>
+          <div class="callout">
+            <strong>Portfolio approach</strong>
+            <p>This write-up intentionally focuses on investigative reasoning and skills rather than serving as an answer sheet for the KC7 exercise.</p>
+          </div>
+        </section>
+
+        <section id="objective" class="case-section">
+          <div class="case-label">02 / OBJECTIVE</div>
+          <h2>Investigation objective</h2>
+          <p>
+            Examine security telemetry to identify suspicious activity, determine whether a
+            user interacted with potentially malicious infrastructure, and build a defensible
+            understanding of what happened from the available evidence.
+          </p>
+        </section>
+
+        <section id="skills" class="case-section">
+          <div class="case-label">03 / SKILLS PRACTISED</div>
+          <h2>Capabilities demonstrated</h2>
+          <div class="mini-grid">
+            <div><strong>KQL</strong><span>Filtering and querying telemetry</span></div>
+            <div><strong>Log Analysis</strong><span>Reading and interpreting event data</span></div>
+            <div><strong>Pivoting</strong><span>Moving between related evidence sources</span></div>
+            <div><strong>IOC Analysis</strong><span>Working with URLs, IPs and indicators</span></div>
+            <div><strong>Phishing Analysis</strong><span>Tracing suspicious user activity</span></div>
+            <div><strong>Timeline Building</strong><span>Correlating events chronologically</span></div>
+          </div>
+        </section>
+
+        <section id="method" class="case-section">
+          <div class="case-label">04 / INVESTIGATION METHOD</div>
+          <h2>How I approached the investigation</h2>
+
+          <div class="timeline">
+            <div class="timeline-item">
+              <span>01</span>
+              <div>
+                <h3>Start with the investigative question</h3>
+                <p>I identified what needed to be proven from the available evidence instead of searching logs without a clear purpose.</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <span>02</span>
+              <div>
+                <h3>Select the relevant data source</h3>
+                <p>I matched the question to the telemetry most likely to contain evidence of the activity being investigated.</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <span>03</span>
+              <div>
+                <h3>Filter using known indicators</h3>
+                <p>I used known values such as a source IP or suspicious URL to reduce noise and isolate relevant events.</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <span>04</span>
+              <div>
+                <h3>Interpret before pivoting</h3>
+                <p>I checked what each result actually demonstrated, then used that evidence to decide the next query or data source.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="query" class="case-section">
+          <div class="case-label">05 / QUERY EXAMPLE</div>
+          <h2>Example KQL pattern</h2>
+          <p>
+            One investigation pattern involved filtering outbound network telemetry by a known
+            indicator and source system. The values below are intentionally redacted for portfolio use.
+          </p>
+          <pre><code>OutboundNetworkEvents
+| where url == "&lt;redacted-suspicious-url&gt;"
+| where src_ip == "&lt;redacted-source-ip&gt;"</code></pre>
+          <p class="subtle">
+            This query tests whether a specific source system generated an outbound request to
+            the suspicious URL. A matching event can then be correlated with timestamps and other telemetry.
+          </p>
+        </section>
+
+        <section id="findings" class="case-section">
+          <div class="case-label">06 / KEY FINDINGS</div>
+          <h2>What the investigation established</h2>
+          <p>
+            The exercise demonstrated how analysts can connect evidence across different datasets
+            and use small, targeted queries to confirm or reject an investigative hypothesis.
+          </p>
+          <div class="finding-list">
+            <div><span>✓</span><p>Used known indicators to narrow a large telemetry dataset.</p></div>
+            <div><span>✓</span><p>Correlated network activity with the surrounding investigation context.</p></div>
+            <div><span>✓</span><p>Used query results as evidence for the next investigative step.</p></div>
+          </div>
+          <div class="placeholder-note">
+            <strong>Personalise this section:</strong> after reviewing KC7's publication rules, replace these general points with your own non-spoiler findings and reasoning.
+          </div>
+        </section>
+
+        <section id="lessons" class="case-section">
+          <div class="case-label">07 / LESSONS LEARNED</div>
+          <h2>What I took away</h2>
+          <p>
+            The main lesson was that effective investigation is not just about knowing KQL syntax.
+            The analyst needs to understand what question a query is answering, what a matching
+            event proves, what it does not prove, and which dataset should be examined next.
+          </p>
+          <p>
+            I also practised documenting enough context that another analyst could understand
+            why a query was run and how the result influenced the investigation.
+          </p>
+        </section>
+
+        <section id="evidence" class="case-section">
+          <div class="case-label">08 / EVIDENCE</div>
+          <h2>Completion evidence</h2>
+          <div class="evidence-box">
+            <div class="evidence-icon">+</div>
+            <div>
+              <strong>Add your KC7 completion screenshot here</strong>
+              <p>Save the image in <code>assets/</code>, then replace this box with an image. Avoid screenshots that expose answers you should not publicly publish.</p>
+            </div>
+          </div>
+        </section>
+
+        <div class="case-footer-nav">
+          <a href="../index.html#projects">← Back to portfolio</a>
+          <span>Next case study coming soon →</span>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> Billy Wong</span>
+      <span>Cyber Security Portfolio</span>
+    </div>
+  </footer>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>
