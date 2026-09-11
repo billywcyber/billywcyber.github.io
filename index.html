@@ -1,184 +1,215 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Billy Wong — Cyber Security Graduate portfolio focused on SOC analysis, threat investigation, digital forensics and AI security." />
+  <meta name="description" content="Billy Wong — Cyber Security graduate in Perth focused on SOC analysis, threat investigation, digital forensics and AI security." />
+  <meta name="theme-color" content="#071016" />
+  <meta property="og:title" content="Billy Wong | Cyber Security Portfolio" />
+  <meta property="og:description" content="SOC analysis, KQL investigations, digital forensics, authorised security testing and AI security research." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://billywcyber.github.io/" />
   <title>Billy Wong | Cyber Security Portfolio</title>
-  <link rel="stylesheet" href="assets/style.css" />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="assets/style.css" /><link rel="stylesheet" href="assets/style-2.css" /><link rel="stylesheet" href="assets/style-3.css" /><link rel="stylesheet" href="assets/style-4.css" /><link rel="stylesheet" href="assets/style-5.css" />
+  <script>document.documentElement.dataset.theme=localStorage.getItem('bw-theme')||'dark';</script>
 </head>
 <body>
-  <div class="grid-bg"></div>
-  <header class="nav-wrap">
-    <nav class="nav container">
-      <a class="brand" href="index.html"><span class="brand-mark">BW</span><span>Billy Wong</span></a>
-      <div class="nav-links">
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+  <div class="noise" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <nav class="nav shell" aria-label="Primary navigation">
+      <a class="brand" href="#top" aria-label="Billy Wong home">
+        <span class="brand-mark" aria-hidden="true">BW</span>
+        <span class="brand-copy"><strong>Billy Wong</strong><small>Cyber Security</small></span>
+      </a>
+      <button class="menu-toggle icon-btn" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open navigation">
+        <span></span><span></span>
+      </button>
+      <div class="nav-links" id="nav-links">
+        <a href="#work">Work</a>
+        <a href="#lab-notes">Lab notes</a>
         <a href="#skills">Skills</a>
-        <a href="#education">Education</a>
+        <a href="#about">About</a>
         <a href="#contact">Contact</a>
+        <button class="theme-toggle icon-btn" type="button" aria-label="Toggle light and dark theme"><span aria-hidden="true">◐</span></button>
       </div>
     </nav>
   </header>
 
-  <main>
-    <section class="hero container">
-      <div class="hero-copy">
-        <div class="eyebrow"><span class="status-dot"></span> Cyber Security Graduate · Perth, WA</div>
-        <h1>Security analysis with an <span>investigator's mindset.</span></h1>
-        <p class="hero-text">
-          Building hands-on experience in SOC investigation, log analysis, digital forensics
-          and AI security. I document the reasoning behind each investigation — not just the result.
-        </p>
+  <main id="main">
+    <section class="hero shell" id="top">
+      <div class="hero-copy reveal">
+        <div class="availability"><span class="pulse"></span> Perth, WA · Open to graduate & entry-level cyber roles</div>
+        <p class="kicker">SOC / SECURITY ANALYST · DIGITAL FORENSICS · AI SECURITY</p>
+        <h1>I investigate signals, connect evidence and turn findings into <em>clear security decisions.</em></h1>
+        <p class="hero-text">Cyber Security graduate from Edith Cowan University building practical blue-team depth through KQL investigations, forensic analysis, authorised security testing and machine-learning security research.</p>
         <div class="hero-actions">
-          <a class="btn primary" href="#projects">Explore Projects</a>
-          <a class="btn ghost" href="#contact">Contact</a>
-        </div>
-        <div class="hero-tags">
-          <span>KQL</span><span>Log Analysis</span><span>Threat Investigation</span>
-          <span>Digital Forensics</span><span>AI Security</span>
+          <a class="button primary" href="#work">Explore case studies <span>↘</span></a>
+          <a class="button secondary" href="https://www.linkedin.com/in/billy-wong-too-yuen/" target="_blank" rel="noreferrer">LinkedIn ↗</a>
+          <a class="text-link" href="https://github.com/billywcyber" target="_blank" rel="noreferrer">github.com/billywcyber ↗</a>
         </div>
       </div>
 
-      <aside class="terminal-card" aria-label="portfolio summary">
-        <div class="terminal-top">
-          <span></span><span></span><span></span>
-          <small>analyst_profile.sh</small>
+      <aside class="analyst-console reveal" aria-label="Analyst profile summary">
+        <div class="console-bar">
+          <div class="window-dots"><i></i><i></i><i></i></div>
+          <span>analyst_profile.sh</span>
+          <span class="console-status">LIVE</span>
         </div>
-        <div class="terminal-body">
-          <p><b>$ whoami</b></p>
-          <p class="output">Billy Wong</p>
-          <p><b>$ focus</b></p>
-          <p class="output">SOC · Security Analysis · AI Security</p>
-          <p><b>$ toolkit</b></p>
-          <p class="output">KQL · Nmap · Wireshark · Autopsy · Kali Linux · Python</p>
-          <p><b>$ current_status</b></p>
-          <p class="output"><span class="terminal-ok">●</span> Building practical blue-team experience</p>
+        <div class="console-body">
+          <div class="command"><span>$</span> whoami</div>
+          <div class="console-output">Billy Wong</div>
+          <div class="command"><span>$</span> focus --current</div>
+          <div class="console-output">SOC analysis / threat investigation / AI security</div>
+          <div class="command"><span>$</span> toolkit --short</div>
+          <div class="tool-stream"><span>KQL</span><span>Autopsy</span><span>FTK Imager</span><span>Nmap</span><span>Wireshark</span><span>Python</span><span>Kali Linux</span></div>
+          <div class="command"><span>$</span> status</div>
+          <div class="console-output success">● Documenting hands-on investigations</div>
         </div>
       </aside>
     </section>
 
-    <section id="about" class="section container">
-      <div class="section-heading">
-        <span>01 / ABOUT</span>
-        <h2>From cybersecurity theory to practical investigation.</h2>
-      </div>
-      <div class="two-col">
-        <p class="lead">
-          I am a Cyber Security graduate from Edith Cowan University with interests in
-          security operations, threat investigation and AI security. My portfolio brings together
-          practical security labs, digital investigation work and research into attacks against
-          machine-learning systems.
-        </p>
-        <div class="metric-grid">
-          <div class="metric"><strong>SOC</strong><span>Investigation</span></div>
-          <div class="metric"><strong>KQL</strong><span>Log analysis</span></div>
-          <div class="metric"><strong>DFIR</strong><span>Forensics</span></div>
-          <div class="metric"><strong>AI</strong><span>Security research</span></div>
-        </div>
-      </div>
+    <section class="proof-strip shell reveal" aria-label="Portfolio highlights">
+      <div><strong>04</strong><span>documented case studies</span></div>
+      <div><strong>KQL</strong><span>log-query practice</span></div>
+      <div><strong>DFIR</strong><span>forensic investigation</span></div>
+      <div><strong>AI</strong><span>security research</span></div>
     </section>
 
-    <section id="projects" class="section container">
-      <div class="section-heading">
-        <span>02 / SELECTED WORK</span>
-        <h2>Investigations & security projects.</h2>
+    <section class="section shell" id="work">
+      <div class="section-intro reveal">
+        <div><span class="section-no">01</span><span class="eyebrow">Selected work</span></div>
+        <div>
+          <h2>Evidence over buzzwords.</h2>
+          <p>Each case study shows the question, method, tools, evidence and security takeaway—not just a list of technologies.</p>
+        </div>
       </div>
 
-      <div class="project-grid">
-        <article class="project-card featured">
-          <div class="project-meta"><span>CASE STUDY</span><span>KC7</span></div>
+      <div class="bento-grid">
+        <article class="project-card project-featured reveal">
+          <div class="project-topline"><span class="project-type">SOC LAB · KC7</span><span class="status-chip complete">Completed</span></div>
+          <div class="project-icon" aria-hidden="true">⌁</div>
           <h3>Security Analyst I — Part 1</h3>
-          <p>
-            Guided SOC investigation using KQL and security telemetry. Focused on querying,
-            pivoting between evidence sources, correlating events and explaining investigation logic.
-          </p>
-          <div class="chips"><span>KQL</span><span>Log Analysis</span><span>Phishing</span><span>Network Telemetry</span></div>
-          <a class="project-link" href="projects/kc7-security-analyst-1.html">View investigation →</a>
+          <p>Structured SOC investigation using KQL and security telemetry. Practised hypothesis-driven querying, evidence pivots, timeline reasoning and defensible conclusions without publishing an answer key.</p>
+          <div class="tag-row"><span>KQL</span><span>Log analysis</span><span>Phishing</span><span>Network telemetry</span></div>
+          <a class="card-link" href="projects/kc7-security-analyst-1.html">Open investigation <span>↗</span></a>
         </article>
 
-        <article class="project-card">
-          <div class="project-meta"><span>RESEARCH</span><span>AI SECURITY</span></div>
+        <article class="project-card ai-card reveal">
+          <div class="project-topline"><span class="project-type">RESEARCH · 2025</span><span class="status-chip">AI Security</span></div>
+          <div class="visual-orbit" aria-hidden="true"><i></i><i></i><i></i><b>SSL</b></div>
           <h3>Backdoor Attacks on Self-Supervised Models</h3>
-          <p>
-            Master's research project examining poisoning and backdoor attacks against
-            self-supervised learning models and approaches for detecting malicious behaviour.
-          </p>
-          <div class="chips"><span>Python</span><span>Machine Learning</span><span>Backdoors</span><span>Research</span></div>
-          <span class="project-link muted">Case study coming soon</span>
+          <p>Attack-and-defence research across BYOL, SimCLR, MSF and MoCo v2 using ImageNet-10 and MS COCO-10, with ASR and clean-performance evaluation.</p>
+          <div class="tag-row"><span>Python</span><span>Backdoors</span><span>Clustering</span><span>Model robustness</span></div>
+          <a class="card-link" href="projects/ai-security-backdoor-ssl.html">Read research case study <span>↗</span></a>
         </article>
 
-        <article class="project-card">
-          <div class="project-meta"><span>LAB COLLECTION</span><span>BLUE TEAM</span></div>
-          <h3>Security Investigation Labs</h3>
-          <p>
-            A growing collection of hands-on investigations covering phishing, network events,
-            log analysis, threat detection and incident-response fundamentals.
-          </p>
-          <div class="chips"><span>SIEM</span><span>Threat Hunting</span><span>IOC Analysis</span></div>
-          <span class="project-link muted">More labs being documented</span>
+        <article class="project-card reveal">
+          <div class="project-topline"><span class="project-type">DFIR · 2024</span><span class="status-chip">Forensics</span></div>
+          <div class="mini-visual forensic-visual" aria-hidden="true"><span>01</span><span>HASH</span><span>ARTIFACT</span></div>
+          <h3>Digital Forensics Investigation</h3>
+          <p>Analysed a forensic disk image, validated evidence integrity, recovered artefacts and built a traceable timeline using Autopsy and FTK Imager.</p>
+          <div class="tag-row"><span>Autopsy</span><span>FTK Imager</span><span>Hash analysis</span><span>Timeline</span></div>
+          <a class="card-link" href="projects/digital-forensics-investigation.html">View case study <span>↗</span></a>
+        </article>
+
+        <article class="project-card reveal">
+          <div class="project-topline"><span class="project-type">SECURITY ASSESSMENT · 2024</span><span class="status-chip">Authorised</span></div>
+          <div class="mini-visual risk-visual" aria-hidden="true"><span>CVSS</span><strong>9.1</strong><i></i></div>
+          <h3>Penetration Testing Scenario</h3>
+          <p>Black-box assessment of a controlled lab environment. Identified exploitable weaknesses, mapped findings to MITRE ATT&CK and prioritised remediation using CVSS.</p>
+          <div class="tag-row"><span>Nmap</span><span>SQLMap</span><span>Hydra</span><span>MITRE ATT&CK</span></div>
+          <a class="card-link" href="projects/penetration-testing-assessment.html">View assessment <span>↗</span></a>
         </article>
       </div>
     </section>
 
-    <section id="skills" class="section container">
-      <div class="section-heading">
-        <span>03 / CAPABILITIES</span>
-        <h2>Security toolkit.</h2>
-      </div>
-      <div class="skill-list">
-        <div class="skill-row"><span>Security Operations</span><strong>Log Analysis · KQL · Threat Investigation · IOC Analysis</strong></div>
-        <div class="skill-row"><span>Network Security</span><strong>Nmap · Wireshark · Network Analysis</strong></div>
-        <div class="skill-row"><span>Digital Forensics</span><strong>Autopsy · Evidence Analysis · Investigation</strong></div>
-        <div class="skill-row"><span>Offensive Foundations</span><strong>Kali Linux · Ethical Hacking · Reconnaissance</strong></div>
-        <div class="skill-row"><span>AI Security</span><strong>Backdoor Attacks · Model Poisoning · Self-Supervised Learning</strong></div>
-        <div class="skill-row"><span>Programming</span><strong>Python · Web Technologies</strong></div>
-      </div>
-    </section>
-
-    <section id="education" class="section container">
-      <div class="section-heading">
-        <span>04 / EDUCATION</span>
-        <h2>Academic foundation.</h2>
-      </div>
-      <div class="education-card">
+    <section class="section shell" id="lab-notes">
+      <div class="section-intro reveal">
+        <div><span class="section-no">02</span><span class="eyebrow">Lab notes</span></div>
         <div>
-          <div class="edu-badge">ECU</div>
+          <h2>Learning in public—without leaking challenge answers.</h2>
+          <p>A lightweight log of practical analyst work. The focus is methodology, queries, evidence handling and lessons learned.</p>
         </div>
-        <div>
-          <h3>Master of Cyber Security</h3>
-          <p>Edith Cowan University · Perth, Western Australia</p>
-          <p class="subtle">Coursework and projects across ethical hacking, digital forensics, cyber security and AI-security research.</p>
+      </div>
+      <div class="lab-panel reveal">
+        <div class="lab-header">
+          <span>Recent activity</span><span>Updated Sep 2026</span>
+        </div>
+        <a class="lab-row" href="projects/kc7-security-analyst-1.html">
+          <span class="lab-index">01</span>
+          <span><strong>KC7 · Security Analyst I — Part 1</strong><small>KQL investigation · network telemetry · phishing workflow</small></span>
+          <span class="lab-state">Complete ↗</span>
+        </a>
+        <div class="lab-row muted-row">
+          <span class="lab-index">02</span>
+          <span><strong>Next blue-team investigation</strong><small>This slot is ready for your next KC7 / SIEM / incident-response write-up.</small></span>
+          <span class="lab-state">Queue</span>
         </div>
       </div>
     </section>
 
-    <section id="contact" class="section container contact-section">
-      <div class="section-heading">
-        <span>05 / CONTACT</span>
-        <h2>Let's connect.</h2>
+    <section class="section shell" id="skills">
+      <div class="section-intro reveal">
+        <div><span class="section-no">03</span><span class="eyebrow">Capabilities</span></div>
+        <div><h2>Tools connected to tasks.</h2><p>Skills are grouped by the work they support rather than shown as an unqualified logo wall.</p></div>
       </div>
-      <p>
-        I am interested in graduate and entry-level opportunities in security analysis,
-        SOC operations and related cybersecurity roles.
-      </p>
-      <div class="contact-links">
-        <a class="btn primary" href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn ↗</a>
-        <a class="btn ghost" href="https://github.com/" target="_blank" rel="noreferrer">GitHub ↗</a>
+      <div class="capability-grid">
+        <article class="capability reveal"><span class="cap-no">01</span><h3>Security operations</h3><p>Log analysis, KQL, IOC analysis, threat investigation, incident reasoning, timeline construction.</p><div class="tag-row"><span>KQL</span><span>SIEM concepts</span><span>Threat analysis</span></div></article>
+        <article class="capability reveal"><span class="cap-no">02</span><h3>Digital forensics</h3><p>Disk-image examination, artefact recovery, data carving, hash validation, evidence timelines and structured reporting.</p><div class="tag-row"><span>Autopsy</span><span>FTK Imager</span><span>TrueCrack</span></div></article>
+        <article class="capability reveal"><span class="cap-no">03</span><h3>Security assessment</h3><p>Reconnaissance, vulnerability assessment, controlled exploitation, risk scoring and remediation recommendations.</p><div class="tag-row"><span>Nmap</span><span>Kali Linux</span><span>CVSS</span><span>MITRE ATT&CK</span></div></article>
+        <article class="capability reveal"><span class="cap-no">04</span><h3>AI security</h3><p>Backdoor attack testing, dataset poisoning, feature-space analysis, clustering, filtering and model robustness evaluation.</p><div class="tag-row"><span>Python</span><span>SSL</span><span>ASR</span><span>i-CutMix</span></div></article>
+      </div>
+    </section>
+
+    <section class="section shell" id="about">
+      <div class="section-intro reveal">
+        <div><span class="section-no">04</span><span class="eyebrow">About</span></div>
+        <div><h2>Technical depth with clear communication.</h2><p>I’m targeting SOC Analyst, Security Analyst and Cybersecurity Analyst roles where investigation, evidence and communication matter.</p></div>
+      </div>
+      <div class="about-grid">
+        <article class="story-card reveal">
+          <p class="large-copy">My background combines cyber security, computer science and information systems. I’m most interested in understanding what happened, proving it with evidence and translating the result into practical security action.</p>
+          <div class="soft-note"><span>Current direction</span><strong>Blue team / SOC · incident investigation · AI security</strong></div>
+        </article>
+        <div class="timeline-card reveal">
+          <div class="timeline-line">
+            <div><span>2026</span><strong>Hands-on analyst practice</strong><p>KC7 investigations, Deloitte cyber simulation and continuous lab work.</p></div>
+            <div><span>2025</span><strong>Master of Cyber Security</strong><p>Edith Cowan University · research on backdoor attacks in self-supervised models.</p></div>
+            <div><span>2024</span><strong>DFIR + penetration testing</strong><p>Forensic disk investigation and authorised black-box security assessment.</p></div>
+            <div><span>2017–18</span><strong>Master of Computer Science</strong><p>Edith Cowan University.</p></div>
+            <div><span>2011–16</span><strong>BSc (Hons) Information Systems</strong><p>University of Mauritius.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section shell contact-section" id="contact">
+      <div class="contact-card reveal">
+        <div>
+          <span class="eyebrow">05 · Contact</span>
+          <h2>Looking for a graduate who documents the investigation—not just the answer?</h2>
+          <p>I’m open to graduate and entry-level security opportunities in Perth, especially SOC, security analysis, incident investigation and related cyber roles.</p>
+        </div>
+        <div class="contact-actions">
+          <a class="button primary" href="mailto:bwong0005@gmail.com">Email me ↗</a>
+          <a class="button secondary" href="https://www.linkedin.com/in/billy-wong-too-yuen/" target="_blank" rel="noreferrer">LinkedIn ↗</a>
+          <a class="button secondary" href="https://github.com/billywcyber" target="_blank" rel="noreferrer">GitHub ↗</a>
+        </div>
       </div>
     </section>
   </main>
 
-  <footer>
-    <div class="container footer-inner">
-      <span>© <span id="year"></span> Billy Wong</span>
-      <span>Built for GitHub Pages</span>
-    </div>
+  <footer class="footer shell">
+    <span>© <span id="year"></span> Billy Wong</span>
+    <span>Built as a lightweight GitHub Pages portfolio · HTML / CSS / JS</span>
+    <a href="#top">Back to top ↑</a>
   </footer>
 
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
+  <script src="assets/script.js" defer></script>
 </body>
 </html>
