@@ -1,5 +1,184 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#071017"><meta name="description" content="AI security research case study by Billy Wong on backdoor attacks and defence in self-supervised learning models."><title>AI Security Research | Billy Wong</title><link rel="icon" href="../assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="../assets/style.css"></head><body><a class="skip-link" href="#main">Skip to content</a><header class="site-header"><nav class="nav shell" aria-label="Case study navigation"><a class="brand" href="../index.html" aria-label="Billy Wong home"><span class="brand-mark" aria-hidden="true">BW</span><span class="brand-copy"><strong>Billy Wong</strong><span>Cyber Security</span></span></a><a class="case-nav-link" href="../index.html#projects">Projects</a></nav></header><main id="main"><section class="case-hero shell"><a class="back-link" href="../index.html#projects">Back to projects</a><p class="eyebrow">MASTER'S RESEARCH · AI SECURITY · 2025</p><h1>Backdoor Attacks on <em>Self-Supervised Models</em></h1><p class="case-summary">Team research project examining how patch-based backdoors affect self-supervised learning and how filtering and retraining can reduce their impact.</p><div class="case-facts"><div class="case-fact"><span>Models</span><strong>BYOL · SimCLR · MSF · MoCo v2</strong></div><div class="case-fact"><span>Datasets</span><strong>ImageNet-10 · MS COCO-10</strong></div><div class="case-fact"><span>Metrics</span><strong>ASR · clean performance</strong></div><div class="case-fact"><span>Focus</span><strong>Attack + defence</strong></div></div></section><section class="case-layout shell"><aside class="case-sidebar"><nav><strong>On this page</strong><a href="#problem">01 Problem</a><a href="#workflow">02 Workflow</a><a href="#defence">03 Defence</a><a href="#contribution">04 Contribution</a></nav></aside><article class="case-content"><section class="case-section" id="problem"><span class="case-kicker">Problem</span><h2>Backdoors in self-supervised learning</h2><p>The project tested whether poisoned training samples containing hidden trigger patterns could influence model behaviour while preserving apparently normal clean performance.</p></section>
-<section class="case-section" id="workflow"><span class="case-kicker">Workflow</span><h2>Controlled attack evaluation</h2><div class="process"><div class="process-row"><span>01</span><div><strong>Prepare datasets</strong><p>Created controlled ImageNet-10 and MS COCO-10 subsets for comparable testing.</p></div></div><div class="process-row"><span>02</span><div><strong>Poison training data</strong><p>Introduced a patch-based trigger into a limited portion of the training data.</p></div></div><div class="process-row"><span>03</span><div><strong>Compare SSL models</strong><p>Evaluated BYOL, SimCLR, MSF and MoCo v2.</p></div></div><div class="process-row"><span>04</span><div><strong>Measure impact</strong><p>Used Attack Success Rate alongside clean-performance metrics.</p></div></div></div></section>
-<section class="case-section" id="defence"><span class="case-kicker">Defence</span><h2>Detect, filter and retrain</h2><p>The defence pipeline used feature extraction and clustering to identify suspicious samples, remove likely poisoned candidates and retrain on cleaner data before re-evaluation.</p><div class="case-grid"><div class="case-tile"><strong>Feature analysis</strong><span>Inspect learned representation space</span></div><div class="case-tile"><strong>DBSCAN</strong><span>Cluster suspicious samples</span></div><div class="case-tile"><strong>Filtering</strong><span>Remove likely poisoned candidates</span></div><div class="case-tile"><strong>Retraining</strong><span>Measure whether ASR falls without excessive clean-performance loss</span></div></div></section>
-<section class="case-section" id="contribution"><span class="case-kicker">My contribution</span><h2>Security research as an engineering workflow</h2><p>My work included dataset preparation and purification, controlled poisoning, model comparison, experimental testing and documenting results with the team.</p><div class="finding"><span>•</span><p>Used repeatable scripts and measurable security metrics.</p></div><div class="finding"><span>•</span><p>Compared several SSL approaches rather than relying on one model family.</p></div><div class="finding"><span>•</span><p>Connected attack testing to a practical detection-and-mitigation pipeline.</p></div></section><div class="case-footer-nav"><a href="digital-forensics-investigation.html">Digital forensics</a><a href="penetration-testing-assessment.html">Next: Penetration testing</a></div></article></section></main><footer class="footer shell"><span>© <span id="year"></span> Billy Wong</span><span>Cyber Security Portfolio</span><a href="#main">Back to top</a></footer><script src="../assets/script.js" defer></script></body></html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#071017" />
+  <meta name="description" content="AI security research case study by Billy Wong on patch-based backdoor attacks, data poisoning and defence in self-supervised learning models." />
+  <title>AI Security Research | Billy Wong</title>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../assets/style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <nav class="nav shell" aria-label="Case study navigation">
+      <a class="brand" href="../index.html" aria-label="Billy Wong home">
+        <span class="brand-mark" aria-hidden="true">BW</span>
+        <span class="brand-copy"><strong>Billy Wong</strong><span>Cyber Security</span></span>
+      </a>
+      <a class="case-nav-link" href="../index.html#projects">Projects</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="case-hero shell">
+      <a class="back-link" href="../index.html#projects">Back to projects</a>
+      <p class="eyebrow">MASTER'S RESEARCH · AI SECURITY · ECU · 2025</p>
+      <h1>Poisoning Self-Supervised Models by <em>Backdoor Attacks</em></h1>
+      <p class="case-summary">A five-person research project investigating whether hidden visual triggers can manipulate self-supervised vision models, and whether a label-free detection, filtering and retraining pipeline can reduce that backdoor behaviour.</p>
+      <div class="case-facts">
+        <div class="case-fact"><span>Models</span><strong>BYOL · SimCLR · MSF · MoCo v2</strong></div>
+        <div class="case-fact"><span>Datasets</span><strong>ImageNet-10 · MS COCO-10</strong></div>
+        <div class="case-fact"><span>Backbone</span><strong>ResNet-18</strong></div>
+        <div class="case-fact"><span>Evaluation</span><strong>CDA · PDA · ASR · BIT</strong></div>
+      </div>
+    </section>
+
+    <section class="case-layout shell">
+      <aside>
+        <nav class="toc" aria-label="On this page">
+          <strong>On this page</strong>
+          <a href="#overview">01 Overview</a>
+          <a href="#objective">02 Research objective</a>
+          <a href="#method">03 Method</a>
+          <a href="#data">04 Dataset engineering</a>
+          <a href="#defence">05 Defence</a>
+          <a href="#results">06 Results</a>
+          <a href="#challenges">07 Challenges</a>
+          <a href="#contribution">08 My contribution</a>
+          <a href="#takeaways">09 Takeaways</a>
+        </nav>
+      </aside>
+
+      <article class="case-content">
+        <section class="case-section" id="overview">
+          <span class="case-kicker">Overview</span>
+          <h2>Can a model learn a hidden malicious behaviour without obvious damage to normal performance?</h2>
+          <p>Self-supervised learning (SSL) learns useful representations from unlabelled data. That makes it powerful for large-scale computer-vision systems, but it also creates a security question: if a small portion of the training data is poisoned, can the model silently learn an attacker-controlled trigger?</p>
+          <p>We tested patch-based backdoor attacks across four SSL approaches and then evaluated a defence based on feature-space inspection, suspicious-sample filtering and retraining. ImageNet-10 provided a controlled benchmark, while MS COCO-10 introduced more complex, real-world scenes.</p>
+          <div class="callout">
+            <strong>Portfolio summary</strong>
+            <p>The project combined adversarial machine learning, dataset engineering and defensive experimentation. The full academic report is not publicly distributed; this page presents the methodology, selected results and lessons I can discuss in an interview.</p>
+          </div>
+        </section>
+
+        <section class="case-section" id="objective">
+          <span class="case-kicker">Research objective</span>
+          <h2>Evaluate both the attack and the defence.</h2>
+          <p>The primary objective was to evaluate the effectiveness of backdoor attacks against self-supervised models using COCO data, then develop and test a defence capable of detecting and reducing the effect of those hidden triggers.</p>
+          <div class="case-grid">
+            <div class="case-tile"><strong>Attack effectiveness</strong><span>Measure how reliably a trigger redirects predictions toward an attacker-selected target.</span></div>
+            <div class="case-tile"><strong>Stealth</strong><span>Check whether the model can retain normal clean-image performance while the backdoor remains active.</span></div>
+            <div class="case-tile"><strong>Cross-model comparison</strong><span>Compare BYOL, SimCLR, MSF and MoCo v2 under consistent conditions.</span></div>
+            <div class="case-tile"><strong>Defence effectiveness</strong><span>Measure whether filtering and retraining reduce Attack Success Rate without unacceptable clean-performance loss.</span></div>
+          </div>
+        </section>
+
+        <section class="case-section" id="method">
+          <span class="case-kicker">Method</span>
+          <h2>End-to-end attack and defence workflow.</h2>
+          <div class="process">
+            <div class="process-row"><span>01</span><div><strong>Collect and prepare data</strong><p>Build comparable ImageNet-10 and MS COCO-10 datasets, remove duplicates and split data into training and validation sets.</p></div></div>
+            <div class="process-row"><span>02</span><div><strong>Inject a visual trigger</strong><p>Add a fixed patch trigger to a limited portion of the training data. The experiments used a 10% poisoning rate to keep the attack relatively unobtrusive.</p></div></div>
+            <div class="process-row"><span>03</span><div><strong>Pretrain SSL models</strong><p>Train BYOL, SimCLR, MSF and MoCo v2 on the poisoned, unlabelled data using ResNet-18 encoders.</p></div></div>
+            <div class="process-row"><span>04</span><div><strong>Measure behaviour</strong><p>Use linear evaluation and triggered validation images to measure clean performance and Attack Success Rate (ASR).</p></div></div>
+            <div class="process-row"><span>05</span><div><strong>Detect suspicious samples</strong><p>Extract learned features, cluster embeddings, inspect suspicious patches and score likely poisoned samples.</p></div></div>
+            <div class="process-row"><span>06</span><div><strong>Filter, retrain and re-test</strong><p>Remove high-risk candidates, retrain on the cleaned dataset, apply i-CutMix and evaluate clean accuracy and ASR again.</p></div></div>
+          </div>
+        </section>
+
+        <section class="case-section" id="data">
+          <span class="case-kicker">Dataset engineering</span>
+          <h2>Making COCO suitable for controlled SSL experiments.</h2>
+          <p>MS COCO is more complex than ImageNet because a single image can contain several objects and classes. To make COCO-10 more comparable with the single-object structure of ImageNet-10, the project used a dominant-object selection pipeline and then removed near-duplicate images.</p>
+          <div class="case-grid">
+            <div class="case-tile"><strong>Dominant-object filtering</strong><span>Retained scenes where the selected class was visually prominent and removed overly crowded images.</span></div>
+            <div class="case-tile"><strong>80 / 20 split</strong><span>Created consistent training and validation partitions for downstream evaluation.</span></div>
+            <div class="case-tile"><strong>ResNet-18 features</strong><span>Extracted deep visual features instead of comparing only raw pixels.</span></div>
+            <div class="case-tile"><strong>DBSCAN de-duplication</strong><span>Grouped near-duplicate feature vectors using cosine distance and retained representative images.</span></div>
+          </div>
+          <div class="callout">
+            <strong>Important distinction</strong>
+            <p>DBSCAN was used for dataset de-duplication. The later defence stage used k-means clustering on learned SSL feature embeddings to identify anomalous groups.</p>
+          </div>
+        </section>
+
+        <section class="case-section" id="defence">
+          <span class="case-kicker">Defence</span>
+          <h2>Feature-space inspection without relying on labels.</h2>
+          <p>The defence focused on the representations learned by the poisoned encoder. Triggered images can form unusually compact or anomalous groups because the same patch introduces a repeated visual signal.</p>
+          <div class="process">
+            <div class="process-row"><span>A</span><div><strong>Feature extraction</strong><p>Pass training images through the encoder and capture the learned feature vectors.</p></div></div>
+            <div class="process-row"><span>B</span><div><strong>k-means clustering</strong><p>Group similar embeddings and identify clusters with suspiciously high similarity or unusual distribution.</p></div></div>
+            <div class="process-row"><span>C</span><div><strong>Patch inspection</strong><p>Extract likely trigger regions from suspicious samples and compare their visual similarity.</p></div></div>
+            <div class="process-row"><span>D</span><div><strong>Candidate filtering</strong><p>Remove the highest-scoring poisoned candidates to rebuild a cleaner training set.</p></div></div>
+            <div class="process-row"><span>E</span><div><strong>Retraining + i-CutMix</strong><p>Retrain on the cleaned data and use patch-mixing augmentation to reduce reliance on a single repeated trigger pattern.</p></div></div>
+          </div>
+        </section>
+
+        <section class="case-section" id="results">
+          <span class="case-kicker">Selected results</span>
+          <h2>The defence substantially reduced Attack Success Rate.</h2>
+          <p>For the reported COCO-10 defence experiments using a 10% poison rate, the final PatchSearch + i-CutMix stage reduced ASR across all four SSL models.</p>
+          <div class="case-grid">
+            <div class="case-tile"><strong>MoCo v2</strong><span>ASR: 11.93% → 0.22%</span></div>
+            <div class="case-tile"><strong>BYOL</strong><span>ASR: 7.45% → 0.95%</span></div>
+            <div class="case-tile"><strong>MSF</strong><span>ASR: 7.20% → 0.87%</span></div>
+            <div class="case-tile"><strong>SimCLR</strong><span>ASR: 12.21% → 2.14%</span></div>
+          </div>
+          <p>These results supported the central finding that suspicious backdoor behaviour could be reduced using feature-space analysis and data cleaning rather than depending entirely on labelled supervision.</p>
+          <div class="callout">
+            <strong>How I explain ASR</strong>
+            <p>Attack Success Rate is the percentage of triggered inputs that cause the model to produce the attacker's intended target behaviour. For this defence evaluation, lower is better.</p>
+          </div>
+        </section>
+
+        <section class="case-section" id="challenges">
+          <span class="case-kicker">Challenges & decisions</span>
+          <h2>Adapting the research when compute became the bottleneck.</h2>
+          <p>The original scope proposed much larger datasets. During implementation, the initial dual-feature purification approach took more than 222 hours to reach only 73% completion even on the reduced ImageNet-10 subset. Scaling that method to ImageNet-100 or full COCO was not realistic with the available compute.</p>
+          <div class="finding"><span>01</span><p>Reduced the experimental scope to ImageNet-10 and COCO-10 so the project could remain repeatable and complete within resource limits.</p></div>
+          <div class="finding"><span>02</span><p>Revised purification from a dual-feature method to a deep-feature-only ResNet-18 approach, reducing ImageNet-10 purification to roughly an hour.</p></div>
+          <div class="finding"><span>03</span><p>Focused the extension on COCO-10 instead of STL-10 because COCO offered a more complex and less-explored setting for SSL poisoning.</p></div>
+          <p>This became one of the most useful project lessons: research quality is not only about running the biggest experiment; it is also about making justified engineering trade-offs, documenting them and preserving a fair comparison.</p>
+        </section>
+
+        <section class="case-section" id="contribution">
+          <span class="case-kicker">My contribution</span>
+          <h2>Security research within a five-person team.</h2>
+          <p>I contributed across the experimental workflow rather than treating the project as only a literature exercise.</p>
+          <div class="finding"><span>•</span><p>Prepared, purified, split and poisoned ImageNet-10 and MS COCO-10 data for controlled testing.</p></div>
+          <div class="finding"><span>•</span><p>Supported model comparison across BYOL, SimCLR, MSF and MoCo v2 using measurable attack and clean-performance metrics.</p></div>
+          <div class="finding"><span>•</span><p>Worked with repeatable scripts, testing logs and iterative experiments to investigate failed or inconsistent runs.</p></div>
+          <div class="finding"><span>•</span><p>Contributed to defence testing, interpretation of results and technical documentation for the final research deliverables.</p></div>
+          <div class="finding"><span>•</span><p>Collaborated through regular team discussions and supervisor updates to keep the research aligned with scope and deadlines.</p></div>
+        </section>
+
+        <section class="case-section" id="takeaways">
+          <span class="case-kicker">Key takeaways</span>
+          <h2>What this project taught me about AI security.</h2>
+          <div class="case-grid">
+            <div class="case-tile"><strong>Trust requires more than accuracy</strong><span>A model can appear to perform normally on clean inputs while still containing attacker-controlled behaviour.</span></div>
+            <div class="case-tile"><strong>Data quality is a security control</strong><span>Purification, duplicate removal and suspicious-sample filtering directly affect model resilience.</span></div>
+            <div class="case-tile"><strong>Detection can use internal behaviour</strong><span>Feature embeddings can reveal anomalies that are not obvious from raw images alone.</span></div>
+            <div class="case-tile"><strong>Security experiments need reproducibility</strong><span>Clear metrics, testing logs and consistent conditions are essential when comparing attacks and defences.</span></div>
+          </div>
+          <div class="callout">
+            <strong>30-second interview version</strong>
+            <p>I worked on a Master's AI-security project testing whether self-supervised vision models could learn a hidden backdoor from a small poisoned portion of their training data. We compared four SSL models on ImageNet-10 and COCO-10, measured attack success, then used feature clustering, suspicious-patch filtering and i-CutMix retraining to reduce the backdoor effect. My contribution included dataset preparation, poisoning, experimental testing, model comparison and documentation.</p>
+          </div>
+        </section>
+
+        <div class="case-footer-nav">
+          <a href="digital-forensics-investigation.html">Digital forensics</a>
+          <a href="penetration-testing-assessment.html">Next: Penetration testing</a>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer class="footer shell"><span>© <span id="year"></span> Billy Wong</span><span>Cyber Security Portfolio</span><a href="#main">Back to top</a></footer>
+  <script src="../assets/script.js" defer></script>
+</body>
+</html>
