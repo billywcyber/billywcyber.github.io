@@ -1,43 +1,25 @@
-# Billy Wong — Cyber Security Portfolio v2
+# Billy Wong — Cyber Security Portfolio
 
 A lightweight GitHub Pages portfolio focused on SOC analysis, digital forensics, authorised security assessment and AI security research.
 
-## What changed in v2
+## Current structure
 
-- Replaced placeholder LinkedIn/GitHub links with Billy's real public profiles.
-- Rebuilt the homepage with a modern bento / glass / terminal hybrid layout.
-- Added dark/light theme switching and persistent theme preference.
-- Added subtle scroll-reveal animation with reduced-motion support.
-- Added responsive mobile navigation.
-- Turned previously missing projects into full case studies:
-  - KC7 Security Analyst I — Part 1
-  - Backdoor Attacks on Self-Supervised Models
-  - Digital Forensics Investigation
-  - Authorised Penetration Testing Assessment
-- Added SOC-focused capability sections, education timeline and a current lab log.
-- Added favicon, 404 page, robots.txt, sitemap.xml and social/meta descriptions.
-- Kept challenge answers, target details, passwords and exploit strings out of public case studies.
+- `index.html` — portfolio homepage
+- `assets/style.css` — single responsive stylesheet
+- `assets/script.js` — minimal JavaScript for the copyright year and mobile menu behaviour
+- `projects/` — four project case studies
+- `404.html` — custom not-found page
+- `robots.txt` and `sitemap.xml` — basic indexing support
 
-## Upload to GitHub
+## Projects
 
-Repository: `billywcyber/billywcyber.github.io`
+1. KC7 Security Analyst I — Part 1
+2. Digital Forensics Investigation
+3. Backdoor Attacks on Self-Supervised Models
+4. Authorised Penetration Testing Scenario
 
-The simplest update is to replace the repository contents with this folder while keeping the same repository name. GitHub Pages can continue to deploy from the `main` branch `/ (root)`.
+The public case studies intentionally avoid challenge answers, credentials, flags, exploit strings and real target information.
 
-### Recommended upload order
+## Design approach
 
-1. `index.html`
-2. `assets/`
-3. `projects/`
-4. `404.html`
-5. `robots.txt`
-6. `sitemap.xml`
-7. `README.md`
-
-## Future updates
-
-Add a new case-study page whenever a lab is worth showing, then add one card/link to the homepage. Keep each write-up focused on:
-
-**Question → Evidence → Query/Method → Finding → Security impact → Lesson**
-
-Avoid publishing challenge flags, credentials, copyrighted lab answer sets, or real target information.
+The site uses a restrained dark interface, clear typography, simple project cards and one shared stylesheet. Decorative terminal widgets, placeholder sections, unnecessary icons and unused theme controls were removed to keep the portfolio professional and reliable across desktop and mobile browsers.
