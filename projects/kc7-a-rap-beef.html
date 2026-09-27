@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#071017">
+  <meta name="description" content="Billy Wong's in-progress KC7 A Rap Beef security investigation: KQL, web telemetry, reconnaissance and account recovery abuse.">
+  <title>A Rap Beef | KC7 Investigation | Billy Wong</title>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><nav class="nav shell" aria-label="Case study navigation"><a class="brand" href="../index.html" aria-label="Billy Wong home"><span class="brand-mark" aria-hidden="true">BW</span><span class="brand-copy"><strong>Billy Wong</strong><span>Cyber Security</span></span></a><a class="case-nav-link" href="../index.html#projects">Projects</a></nav></header>
+<main id="main">
+  <section class="case-hero shell">
+    <a class="back-link" href="../index.html#projects">Back to projects</a>
+    <p class="eyebrow">KC7 · SECURITY INVESTIGATION · IN PROGRESS</p>
+    <h1>A Rap Beef: <em>an intro to security investigations</em></h1>
+    <p class="case-summary">Tracing a suspicious web visitor from artist contact searches to account recovery activity through KQL and inbound network logs.</p>
+    <div class="case-facts"><div class="case-fact"><span>Platform</span><strong>KC7</strong></div><div class="case-fact"><span>Scenario role</span><strong>OWL Records analyst</strong></div><div class="case-fact"><span>Evidence</span><strong>Inbound web events</strong></div><div class="case-fact"><span>Status</span><strong>In progress</strong></div></div>
+  </section>
+  <section class="case-layout shell">
+    <aside class="case-sidebar"><nav><strong>On this page</strong><a href="#scope">01 Scope</a><a href="#lead">02 Initial lead</a><a href="#pivot">03 Evidence pivots</a><a href="#recovery">04 Recovery attempt</a><a href="#assessment">05 Assessment</a></nav></aside>
+    <article class="case-content">
+      <section class="case-section" id="scope"><span class="case-kicker">Scenario and scope</span><h2>What I was investigating</h2><p>In KC7's fictional OWL Records scenario, a public feud between artists Dwake and Present creates a possible security exposure. Acting as an OWL Records security analyst, I examined whether someone used public information about Dwake to target his account.</p><div class="callout"><strong>Work in progress</strong><p>This case study covers the opening investigation through the security-question request. Later questions, outcomes and any final incident timeline will be added after I complete the exercise.</p></div></section>
+      <section class="case-section" id="lead"><span class="case-kicker">Initial lead</span><h2>Establish the organisation and narrow the web activity</h2><p>I first used the <code>Employees</code> table to locate the CEO record, then investigated the supplied source IP in <code>InboundNetworkEvents</code>. The employee lookup established the organisation's dataset and introduced fields such as usernames and email addresses; it did not identify the web visitor.</p><pre class="code-block"><code>Employees
+| where role == "CEO"</code></pre><p>The query returned Sean Crater as CEO. For the network lead, I applied the exercise's time window and source IP:</p><pre class="code-block"><code>InboundNetworkEvents
+| where timestamp between (datetime("2024-04-10T00:00:00") .. datetime("2024-04-11T00:00:00"))
+| where src_ip == "18.66.52.227"</code></pre><p>This yielded 19 web events. I reviewed the timestamps, requested URLs and status codes to understand what the visitor sought. The IP is a scenario indicator, not proof of a person's identity.</p></section>
+      <section class="case-section" id="pivot"><span class="case-kicker">Evidence pivots</span><h2>Contact searches led to an account recovery route</h2><div class="process"><div class="process-row"><span>01</span><div><strong>Search intent</strong><p>Requested URLs repeatedly searched for Dwake's email address, contact details and booking information. This pattern pointed to targeted information gathering.</p></div></div><div class="process-row"><span>02</span><div><strong>Account identifier</strong><p>The activity exposed <code>dwake_audrey@owl-records.com</code> and showed a password reset request associated with username <code>dwaubrey</code>.</p></div></div><div class="process-row"><span>03</span><div><strong>Recovery questions</strong><p>Subsequent requests referenced a mother's maiden name and a first pet. The investigation then compared those prompts with details disclosed in Dwake's verse.</p></div></div></div></section>
+      <section class="case-section" id="recovery"><span class="case-kicker">Account recovery activity</span><h2>Correlating public clues with the submitted answers</h2><p>The verse disclosed the values <code>Washington</code> and <code>Fluffy</code>. A web event from <code>18.66.52.227</code> at <time datetime="2024-04-10T13:02:47Z">2024-04-10 13:02:47 UTC</time> contained those values in a request to the OWL Records security-question endpoint. This ties the public clues to a concrete recovery request.</p><pre class="code-block"><code>InboundNetworkEvents
+| where src_ip == "18.66.52.227"
+| where url has "Washington" and url has "Fluffy"
+| project timestamp, method, src_ip, url, status_code</code></pre><p>The query above is a compact reconstruction of the filtering approach for this write-up; the KC7 exercise supplied some of the tutorial queries. The logged request used the two answers as URL parameters and returned HTTP 200. That response shows the endpoint handled the request; by itself it does not establish that the answers were accepted or the password was changed.</p></section>
+      <section class="case-section" id="assessment"><span class="case-kicker">Analyst assessment</span><h2>What the current evidence supports</h2><div class="finding"><span>•</span><p>The source IP conducted focused searches for Dwake's contact information, followed by password recovery and security-question activity.</p></div><div class="finding"><span>•</span><p>The recovery request contained the same answers revealed publicly in the verse. This is evidence of an account takeover attempt, with the final outcome still under investigation.</p></div><div class="finding"><span>•</span><p>Putting recovery answers in GET URL parameters can expose them in logs and browser history. The scenario illustrates why publicly discoverable facts make weak recovery factors.</p></div><p><strong>Next investigative step:</strong> check subsequent authentication, reset and account activity before concluding whether the account was compromised. I will extend this page as the rest of the KC7 investigation is completed.</p></section>
+      <div class="case-footer-nav"><a href="../index.html#projects">All projects</a><a href="kc7-security-analyst-1.html">KC7 Part 1</a></div>
+    </article>
+  </section>
+</main>
+<footer class="footer shell"><span>© <span id="year"></span> Billy Wong</span><span>Cyber Security Portfolio</span><a href="#main">Back to top</a></footer><script src="../assets/script.js" defer></script>
+</body></html>
